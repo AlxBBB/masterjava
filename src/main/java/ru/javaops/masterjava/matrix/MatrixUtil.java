@@ -26,7 +26,7 @@ public class MatrixUtil {
 
       private int iter;
 
-      public CalcIter(int iter) {
+      private CalcIter(int iter) {
         this.iter = iter;
       }
 
