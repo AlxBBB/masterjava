@@ -1,23 +1,50 @@
 <Payload xmlns="http://javaops.ru"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://javaops.ru payload.xsd">
-    <Users>
-        <User flag="active" city="kiv">
-            <email>gmail@gmail.com</email>
-            <fullName>Full Name</fullName>
-        </User>
-        <User flag="superuser" city="spb">
-            <email>admin@javaops.ru</email>
-            <fullName>Admin</fullName>
-        </User>
-        <User flag="deleted" city="spb">
-            <email>mail@yandex.ru</email>
-            <fullName>Deleted</fullName>
-        </User>
-    </Users>
-    <Cities>
-        <City id="spb">Санкт-Петербург</City>
-        <City id="kiv">Киев</City>
-        <City id="mnsk">Минск</City>
-    </Cities>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://javaops.ru payload.xsd">
+  <Projects>
+    <Project id="top" description="средний уровень">TopJava</Project>
+    <Project id="master" description="сложный уровень">MasterJava</Project>
+    <Project id="base" description="базовый уровень">BaseJava</Project>
+  </Projects>
+  <Groups>
+    <Group id="top01" status="FINISHED" project="top">topjava01</Group>
+    <Group id="top02" status="FINISHED" project="top">topjava02</Group>
+    <Group id="top03" status="CURRENT" project="top">topjava03</Group>
+    <Group id="master01" status="CURRENT" project="master">masterjava01</Group>
+    <Group id="master02" status="REGISTERING" project="master">masterjava02</Group>
+    <Group id="base01" status="REGISTERING" project="base">basejava01</Group>
+  </Groups>
+  <Cities>
+    <City id="spb">Санкт-Петербург</City>
+    <City id="kiv">Киев</City>
+    <City id="mnsk">Минск</City>
+  </Cities>
+  <Users>
+    <User flag="active" city="kiv" email="gmail@gmail.com">
+      <fullName>Full Name</fullName>
+      <groups>
+        <group>top03</group>
+        <group>master01</group>
+      </groups>
+    </User>
+    <User flag="active" city="mnsk" email="user@gmail.com">
+      <fullName>New User</fullName>
+      <groups>
+        <group>base01</group>
+      </groups>
+    </User>
+    <User flag="superuser" city="spb" email="admin@javaops.ru">
+      <fullName>Admin</fullName>
+      <groups>
+        <group>top01</group>
+        <group>top02</group>
+        <group>top03</group>
+        <group>master02</group>
+        <group>base01</group>
+      </groups>
+    </User>
+    <User flag="deleted" city="spb" email="mail@yandex.ru">
+      <fullName>Deleted</fullName>
+    </User>
+  </Users>
 </Payload>
