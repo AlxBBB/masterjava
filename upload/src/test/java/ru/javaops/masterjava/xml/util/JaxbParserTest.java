@@ -1,6 +1,7 @@
 package ru.javaops.masterjava.xml.util;
 
 import com.google.common.io.Resources;
+import javax.xml.bind.JAXBException;
 import org.junit.Test;
 import ru.javaops.masterjava.xml.schema.CityType;
 import ru.javaops.masterjava.xml.schema.ObjectFactory;
@@ -10,10 +11,14 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 
 public class JaxbParserTest {
-    private static final JaxbParser JAXB_PARSER = new JaxbParser(ObjectFactory.class);
+    private static final JaxbParser JAXB_PARSER = JaxbParser.get(ObjectFactory.class);
 
     static {
-        JAXB_PARSER.setSchema(Schemas.ofClasspath("payload.xsd"));
+        try {
+            JAXB_PARSER.setSchema(Schemas.ofClasspath("payload.xsd"));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
