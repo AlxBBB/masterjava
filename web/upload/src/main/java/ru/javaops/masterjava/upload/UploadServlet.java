@@ -13,6 +13,8 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import ru.javaops.masterjava.persist.service.UserService;
+import ru.javaops.masterjava.persist.service.UserServiceImpl;
 
 import static ru.javaops.masterjava.common.web.ThymeleafListener.engine;
 
@@ -21,6 +23,7 @@ import static ru.javaops.masterjava.common.web.ThymeleafListener.engine;
 public class UploadServlet extends HttpServlet {
 
     private final UserProcessor userProcessor = new UserProcessor();
+    private final UserService userService=new UserServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,8 +42,9 @@ public class UploadServlet extends HttpServlet {
                 throw new IllegalStateException("Upload file have not been selected");
             }
             try (InputStream is = filePart.getInputStream()) {
-                List<User> users = userProcessor.process(is);
-                webContext.setVariable("users", users);
+
+                userService.save(userProcessor.process(is));
+                webContext.setVariable("users", userService.getList(20));
                 engine.process("result", webContext, resp.getWriter());
             }
         } catch (Exception e) {
