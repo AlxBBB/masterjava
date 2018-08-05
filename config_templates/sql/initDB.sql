@@ -22,16 +22,20 @@ CREATE UNIQUE INDEX project_idx ON projects (name);
 CREATE TYPE group_type AS ENUM ('CURRENT', 'FINISHED');
 
 CREATE TABLE groups (
-  name TEXT PRIMARY KEY,
+  id INTEGER PRIMARY KEY DEFAULT  nextval('all_seq'),
+  name TEXT,
   project_id INTEGER REFERENCES projects(id),
   type group_type NOT NULL
 );
+CREATE UNIQUE INDEX group_idx ON groups (name);
+
 
 CREATE TABLE cities (
   id INTEGER PRIMARY KEY DEFAULT  nextval('all_seq'),
+  key TEXT,
   full_name TEXT
 );
-CREATE UNIQUE INDEX city_idx ON cities (full_name);
+CREATE UNIQUE INDEX city_idx ON cities (key);
 
 CREATE TYPE user_flag AS ENUM ('active', 'deleted', 'superuser');
 

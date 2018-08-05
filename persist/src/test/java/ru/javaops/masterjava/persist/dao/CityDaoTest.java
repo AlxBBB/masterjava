@@ -50,12 +50,12 @@ public class CityDaoTest extends AbstractDaoTest<CityDao> {
 
   @Test
   public void findId() throws Exception {
-    Assert.assertEquals(moscowId, dao.get("Москва").getId().intValue());
+    Assert.assertEquals(moscowId, dao.get("mow").getId().intValue());
   }
 
   @Test
   public void noFindId() throws Exception {
-    Assert.assertNull(dao.get("Васюки"));
+    Assert.assertNull(dao.get("msk"));
   }
 
 

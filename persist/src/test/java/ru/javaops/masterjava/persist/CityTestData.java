@@ -16,9 +16,9 @@ public class CityTestData {
 
 
   public static void init() {
-    moscow = new City("Москва");
-    kiev=new City ("Киев");
-    minsk=new City ("Минск");
+    moscow = new City("Москва","mow");
+    kiev=new City ("Киев","kiv");
+    minsk=new City ("Минск","mnsk");
   }
 
   public static void setUp() {

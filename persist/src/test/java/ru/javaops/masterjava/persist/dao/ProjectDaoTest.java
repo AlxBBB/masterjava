@@ -1,16 +1,16 @@
 package ru.javaops.masterjava.persist.dao;
 
-import static ru.javaops.masterjava.persist.ProjectTestData.masterJava;
-import static ru.javaops.masterjava.persist.ProjectTestData.someProjects;
-import static ru.javaops.masterjava.persist.ProjectTestData.topJava;
-import static ru.javaops.masterjava.persist.ProjectTestData.topJavaId;
+import static ru.javaops.masterjava.persist.ProjecGrouptTestData.masterJava;
+import static ru.javaops.masterjava.persist.ProjecGrouptTestData.someProjects;
+import static ru.javaops.masterjava.persist.ProjecGrouptTestData.topJava;
+import static ru.javaops.masterjava.persist.ProjecGrouptTestData.topJavaId;
 
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import ru.javaops.masterjava.persist.ProjectTestData;
+import ru.javaops.masterjava.persist.ProjecGrouptTestData;
 import ru.javaops.masterjava.persist.model.Project;
 
 
@@ -22,12 +22,12 @@ public class ProjectDaoTest extends AbstractDaoTest<ProjectDao> {
 
   @BeforeClass
   public static void init() throws Exception {
-    ProjectTestData.init();
+    ProjecGrouptTestData.init();
   }
 
   @Before
   public void setUp() throws Exception {
-    ProjectTestData.setUp();
+    ProjecGrouptTestData.setUp();
   }
 
   @Test

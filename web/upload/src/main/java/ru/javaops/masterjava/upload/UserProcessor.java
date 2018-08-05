@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import ru.javaops.masterjava.persist.DBIProvider;
+import ru.javaops.masterjava.persist.dao.CityDao;
 import ru.javaops.masterjava.persist.dao.UserDao;
 import ru.javaops.masterjava.persist.model.User;
 import ru.javaops.masterjava.persist.model.UserFlag;
@@ -56,10 +57,16 @@ public class UserProcessor {
         List<User> chunk = new ArrayList<>(chunkSize);
         val processor = new StaxStreamProcessor(is);
         val unmarshaller = jaxbParser.createUnmarshaller();
+        CityDao cityDao = DBIProvider.getDao(CityDao.class);
 
         while (processor.doUntil(XMLEvent.START_ELEMENT, "User")) {
+            //TODO gthtltksdfnm
             ru.javaops.masterjava.xml.schema.User xmlUser = unmarshaller.unmarshal(processor.getReader(), ru.javaops.masterjava.xml.schema.User.class);
-            final User user = new User(id++, xmlUser.getValue(), xmlUser.getEmail(), UserFlag.valueOf(xmlUser.getFlag().value()));
+            final User user = new User(id++, xmlUser.getValue(), xmlUser.getEmail(), UserFlag.valueOf(xmlUser.getFlag().value()),
+                    cityDao.get(
+                            ((ru.javaops.masterjava.xml.schema.CityType) xmlUser.getCity()).getId()
+                    ).getId()
+            );
             chunk.add(user);
             if (chunk.size() == chunkSize) {
                 addChunkFutures(chunkFutures, chunk);
